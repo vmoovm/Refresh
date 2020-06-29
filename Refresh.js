@@ -326,12 +326,16 @@ PushUp.prototype.ChangeState=function(state){
 	}else{
 		return;
 	}
+	if(that.isData) {
+		document.querySelector('#refreshTxt').innerText = that.zconf.loadingTxt;
+	} else {
+		document.querySelector('#refreshTxt').innerText = that.zconf.warnningTxt;
+	}
 	cc = setTimeout(function(){
 		if(that.isData){
 			document.querySelector('#refreshUp').remove();
 			that.zconf.isStopUp=false;//再次开启触发上拉
 		}else{
-			document.querySelector('#refreshTxt').innerText=that.zconf.warnningTxt;
 			document.querySelector('#refreshState').style.display='none';
 			if (!document.querySelector("zrefreshUp-space")) {
 				var dd = document.querySelector('#refreshUp').parentNode
@@ -354,3 +358,5 @@ PushUp.prototype.ResetState=function(state){
 		document.querySelector('#refreshUp').remove();
 	}
 }
+
+
